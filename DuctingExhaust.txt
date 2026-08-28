@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DUCTING/EXHAUST — Jasa Cleaning Ducting Manual · Tanpa Jet, Tanpa Vakum, Tanpa Steam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ============ FONDASI ============ */
+:root{
+  --paper:#F2EDE2;
+  --paper-hi:#FAF7EF;
+  --ink:#1A1712;
+  --ink-2:#5B5342;
+  --accent:#CE4514;
+  --accent-hi:#F26A38;
+  --err:#B3261E;
+  --line:rgba(26,23,18,.16);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'Archivo',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  background-image:
+    linear-gradient(rgba(26,23,18,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(26,23,18,.05) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+::selection{background:var(--accent);color:var(--paper-hi)}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+.wrap{max-width:1220px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+section{scroll-margin-top:80px}
+
+.lab{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.lab .acc-c{color:var(--accent)}
+
+.st{font-weight:840;font-stretch:118%;letter-spacing:-.015em;line-height:1.02;font-size:clamp(30px,4.6vw,54px)}
+.shead{border-top:2px solid currentColor;padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:clamp(28px,4vw,48px)}
+.dk .shead{border-color:rgba(242,237,226,.9)}
+
+.dk{background:var(--ink);color:var(--paper);
+  background-image:
+    linear-gradient(rgba(242,237,226,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(242,237,226,.05) 1px,transparent 1px);
+  background-size:44px 44px;}
+
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);
+  border:1px solid var(--ink);padding:15px 22px;cursor:pointer;
+  font:650 12.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);
+  transition:background .25s,border-color .25s,transform .25s,color .25s}
+.btn svg{width:15px;height:15px}
+.btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dk .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.dk .btn:hover{background:var(--accent-hi);border-color:var(--accent-hi);color:var(--ink)}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{transition:none;opacity:1;transform:none}}
+
+/* ============ PROGRESS + MARQUEE + NAV ============ */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:90}
+.marquee{background:var(--ink);color:var(--paper);overflow:hidden;padding:9px 0}
+.mq-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq-seg{display:flex;align-items:center;gap:26px;padding-right:26px;font:500 10.5px var(--mono);letter-spacing:.18em;white-space:nowrap;text-transform:uppercase}
+.dm{width:6px;height:6px;background:var(--accent);transform:rotate(45deg);flex:none}
+
+header{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 6px 24px rgba(26,23,18,.12)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:24px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand .wm{font-weight:900;font-stretch:125%;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+.brand .wm i{font-style:normal;color:var(--accent)}
+.brand .tg{font:500 8px var(--mono);letter-spacing:.2em;margin-top:4px;color:var(--ink-2);white-space:nowrap}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);transition:width .25s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:11px 16px;font-size:11px}
+.burger{display:none;background:none;border:1.5px solid var(--ink);width:42px;height:42px;cursor:pointer;place-items:center;color:var(--ink)}
+.burger svg{width:19px;height:19px}
+
+#mnav{position:fixed;inset:0;z-index:80;background:var(--ink);color:var(--paper);transform:translateY(-102%);transition:transform .5s cubic-bezier(.7,0,.2,1);display:flex;flex-direction:column;padding:26px clamp(20px,6vw,48px)}
+#mnav.open{transform:none}
+#mnav .top{display:flex;justify-content:space-between;align-items:center}
+#mnav .top .lab{color:rgba(242,237,226,.6)}
+#mnav nav{margin:auto 0;display:flex;flex-direction:column}
+#mnav nav a{font-weight:850;font-stretch:120%;font-size:clamp(30px,8vw,50px);padding:13px 0;border-bottom:1px solid rgba(242,237,226,.18);display:flex;align-items:baseline;gap:18px;transition:color .2s,padding-left .25s}
+#mnav nav a:hover{color:var(--accent-hi);padding-left:12px}
+#mnav nav a small{font:500 11px var(--mono);color:var(--accent-hi)}
+#mnav .foot{font:500 10px var(--mono);letter-spacing:.16em;color:rgba(242,237,226,.55);text-transform:uppercase}
+#mnav .xbtn{background:none;border:1.5px solid rgba(242,237,226,.5);color:var(--paper);width:42px;height:42px;cursor:pointer;display:grid;place-items:center}
+
+/* ============ HERO ============ */
+.hero{padding:clamp(52px,8vh,96px) 0 clamp(64px,9vh,110px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--ink);padding:7px 12px;font:500 10.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;margin-bottom:28px;background:var(--paper-hi)}
+.eyebrow b{color:var(--accent);font-weight:600}
+h1{font-weight:860;font-stretch:122%;letter-spacing:-.022em;line-height:.98;font-size:clamp(44px,7.2vw,100px);max-width:14ch}
+h1 .hl{font-style:italic;color:var(--accent)}
+.hero-sub{margin-top:28px;max-width:62ch;font-size:clamp(15px,1.5vw,18px);line-height:1.65;color:var(--ink-2)}
+.hero-sub b{color:var(--ink)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.hero-spec{margin-top:clamp(44px,6vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));column-gap:clamp(36px,6vw,88px);border-top:1px solid var(--line)}
+.specrow{display:flex;justify-content:space-between;gap:18px;padding:12px 2px;border-bottom:1px solid var(--line);font:500 11px var(--mono);letter-spacing:.08em}
+.specrow span:first-child{color:var(--ink-2)}
+.specrow span:last-child{text-align:right}
+
+/* ============ MENGAPA MANUAL ============ */
+.why{padding:clamp(72px,10vw,124px) 0}
+.why-intro{max-width:640px;font-size:clamp(17px,2vw,22px);line-height:1.5;font-weight:500;font-stretch:108%;margin-bottom:clamp(36px,5vw,60px)}
+.why-intro em{color:var(--accent-hi);font-style:italic}
+.acc{border-top:1px solid rgba(242,237,226,.25)}
+.acc-item{border-bottom:1px solid rgba(242,237,226,.25)}
+.acc-btn{width:100%;display:flex;align-items:baseline;gap:clamp(14px,3vw,26px);padding:26px 2px;background:none;border:0;color:inherit;cursor:pointer;text-align:left}
+.acc-no{font:600 12px var(--mono);color:var(--accent-hi);min-width:34px}
+.acc-t{flex:1;font-weight:740;font-stretch:112%;letter-spacing:-.01em;font-size:clamp(18px,2.5vw,27px);transition:transform .3s,color .3s}
+.acc-btn:hover .acc-t{transform:translateX(8px);color:var(--accent-hi)}
+.acc-x{align-self:center;flex:none;width:30px;height:30px;border:1px solid rgba(242,237,226,.4);display:grid;place-items:center;transition:transform .35s,border-color .3s,color .3s}
+.acc-x svg{width:14px;height:14px}
+.acc-item.open .acc-x{transform:rotate(45deg);border-color:var(--accent-hi);color:var(--accent-hi)}
+.acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1)}
+.acc-body>div{overflow:hidden}
+.acc-item.open .acc-body{grid-template-rows:1fr}
+.acc-body p{max-width:66ch;padding:0 2px 12px;padding-left:calc(34px + clamp(14px,3vw,26px));line-height:1.7;font-size:15px;color:rgba(242,237,226,.85)}
+.acc-note{display:block;padding:0 2px 28px;padding-left:calc(34px + clamp(14px,3vw,26px));font:500 11px var(--mono);letter-spacing:.1em;color:var(--accent-hi);line-height:1.7}
+.acc-item.paper .acc-x{border-color:rgba(26,23,18,.35);color:var(--ink)}
+.acc-item.paper .acc-body p{color:var(--ink-2)}
+.acc.paper{border-top:1px solid var(--line)}
+.acc-item.paper{border-bottom:1px solid var(--line)}
+.acc-item.paper .acc-no{color:var(--accent)}
+.acc-item.paper .acc-btn:hover .acc-t{color:var(--accent)}
+
+/* ============ PROSES ============ */
+.proc{padding:clamp(72px,10vw,124px) 0}
+.proc-grid{display:grid;grid-template-columns:.85fr 1.35fr;gap:clamp(36px,5vw,72px);align-items:start}
+.proc-side{position:sticky;top:96px}
+.proc-side p{margin-top:20px;color:var(--ink-2);line-height:1.7;font-size:15.5px;max-width:44ch}
+.proc-side .st{margin-top:14px}
+.note-box{margin-top:30px;border:1px dashed var(--ink);padding:16px 18px;font:500 11px var(--mono);letter-spacing:.06em;line-height:1.8;color:var(--ink-2);background:var(--paper-hi)}
+.note-box b{color:var(--accent);font-weight:600}
+.steps{border-top:2px solid var(--ink)}
+.step{display:grid;grid-template-columns:104px 1fr;gap:clamp(16px,3vw,32px);padding:32px 0;border-bottom:1px solid var(--line);position:relative;transition:background .3s}
+.step::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);transform:scaleY(0);transition:transform .3s;transform-origin:top}
+.step:hover{background:var(--paper-hi)}
+.step:hover::before{transform:scaleY(1)}
+.step-no{font-weight:900;font-stretch:125%;font-size:clamp(42px,5.5vw,66px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--ink);transition:color .3s}
+.step:hover .step-no{color:var(--ink)}
+.step h3{font-weight:750;font-stretch:112%;font-size:clamp(17px,2vw,21px);letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.step h3 svg{width:16px;height:16px;color:var(--accent);flex:none}
+.step p{margin-top:8px;color:var(--ink-2);line-height:1.65;font-size:14.5px;max-width:62ch}
+.step .meta{margin-top:14px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);display:flex;gap:20px;flex-wrap:wrap}
+.step .meta b{color:var(--ink);font-weight:600}
+
+/* ============ SCOPE ============ */
+.scope{padding:0 0 clamp(72px,10vw,124px)}
+.ledger{border-top:2px solid var(--ink)}
+.lrow{display:grid;grid-template-columns:88px 1fr 1.2fr;gap:20px;align-items:baseline;padding:20px 2px;border-bottom:1px solid var(--line);transition:background .25s}
+.lrow:hover{background:var(--paper-hi)}
+.lrow .code{font:600 11px var(--mono);letter-spacing:.1em;color:var(--accent)}
+.lrow .nm{font-weight:700;font-stretch:110%;font-size:clamp(15px,1.7vw,18.5px)}
+.lrow .ds{font:500 11px var(--mono);letter-spacing:.05em;line-height:1.7;color:var(--ink-2)}
+.scope-cta{margin-top:34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border:1px dashed var(--ink);padding:20px 22px;background:var(--paper-hi)}
+.scope-cta p{font:500 11.5px var(--mono);letter-spacing:.05em;line-height:1.7;color:var(--ink-2);max-width:60ch}
+
+/* ============ STRIP STATISTIK ============ */
+.strip{background:var(--accent);color:var(--paper-hi);padding:clamp(48px,7vw,80px) 0;
+  background-image:linear-gradient(rgba(26,23,18,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(26,23,18,.08) 1px,transparent 1px);background-size:44px 44px}
+.strip .shead{border-color:var(--ink);margin-bottom:8px}
+.strip .lab{color:rgba(26,23,18,.75)}
+.stat{display:flex;align-items:baseline;gap:26px;padding:clamp(14px,2.4vw,24px) 2px;border-bottom:1px solid rgba(26,23,18,.3);flex-wrap:wrap}
+.stat .num{font-weight:900;font-stretch:125%;font-size:clamp(44px,7vw,86px);line-height:.95;letter-spacing:-.02em;min-width:220px}
+.stat .cap{flex:1;font:500 11.5px var(--mono);letter-spacing:.08em;line-height:1.7;color:rgba(26,23,18,.85);text-transform:uppercase}
+.strip .src{margin-top:18px;font:500 9.5px var(--mono);letter-spacing:.14em;color:rgba(26,23,18,.6);text-transform:uppercase}
+
+/* ============ GALERI BEFORE / AFTER ============ */
+.gal{padding:clamp(72px,10vw,124px) 0}
+.gal .lede{max-width:64ch;color:var(--ink-2);line-height:1.7;margin-top:16px;font-size:15.5px}
+.gal .lede b{color:var(--ink)}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,34px);margin-top:clamp(32px,4vw,52px)}
+.ba-item{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--paper-hi);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.ba-item.full{grid-column:1/-1}
+.ba-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 15px;border-bottom:2px solid var(--ink)}
+.ba-head .lab{font-size:10px}
+.ba-head .lab:last-child{color:var(--ink-2);text-align:right}
+.ba{position:relative;overflow:hidden;cursor:col-resize;touch-action:none;user-select:none;-webkit-user-select:none;background:var(--ink)}
+.ba-item.full .ba{aspect-ratio:16/9}
+.ba-item:not(.full) .ba{aspect-ratio:4/3}
+.ba:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-top{clip-path:inset(0 50% 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--accent);pointer-events:none;transform:translateX(-1px)}
+.ba-grip{position:absolute;top:50%;left:1px;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;color:var(--ink);box-shadow:0 4px 14px rgba(26,23,18,.35)}
+.ba-grip svg{width:17px;height:17px}
+.ba-tag{position:absolute;top:10px;z-index:2;pointer-events:none;font:600 9.5px var(--mono);letter-spacing:.16em;padding:5px 9px}
+.ba-tag.l{left:10px;background:var(--ink);color:var(--paper)}
+.ba-tag.r{right:10px;background:var(--accent);color:var(--paper-hi)}
+.ba-meta{display:flex;flex-wrap:wrap;gap:6px 24px;padding:12px 15px;border-top:2px solid var(--ink);font:500 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.ba-meta b{color:var(--ink);font-weight:600}
+.ba-err::after{content:"FOTO BELUM TERSEDIA — PERIKSA ALAMAT PADA ATRIBUT SRC";position:absolute;inset:0;display:grid;place-items:center;padding:20px;text-align:center;font:500 10px var(--mono);letter-spacing:.14em;color:var(--paper);background:var(--ink);z-index:3}
+.gal-sub{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:12px;margin-top:clamp(6px,2vw,18px)}
+.gal-sub .lab:last-child{color:var(--ink-2)}
+.gal-note{margin-top:26px;border:1px dashed var(--ink);padding:14px 18px;font:500 10px var(--mono);letter-spacing:.08em;line-height:1.8;color:var(--ink-2);background:var(--paper-hi);text-transform:uppercase}
+.gal-note b{color:var(--accent);font-weight:600}
+
+/* ============ FAQ ============ */
+.faq{padding:clamp(72px,10vw,124px) 0}
+.faq .acc{max-width:860px}
+
+/* ============ KONTAK ============ */
+.contact{padding:clamp(72px,10vw,124px) 0}
+.contact-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,5vw,72px);align-items:start}
+.contact .lede{margin-top:16px;color:rgba(242,237,226,.8);line-height:1.7;max-width:52ch;font-size:15.5px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.f-field{display:flex;flex-direction:column;gap:8px}
+.f-field.full{grid-column:1/-1}
+.f-field label{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,226,.65)}
+.f-field input,.f-field select,.f-field textarea{background:transparent;border:1px solid rgba(242,237,226,.35);color:var(--paper);padding:13px 14px;font:400 14.5px var(--sans);transition:border-color .25s}
+.f-field select{font-family:var(--mono);font-size:13px}
+.f-field select option{color:var(--ink);background:var(--paper)}
+.f-field textarea{resize:vertical;min-height:110px}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--accent-hi)}
+.f-field.err input,.f-field.err select{border-color:var(--err)}
+.f-err{font:500 10px var(--mono);letter-spacing:.06em;color:#FF8A7A;display:none}
+.f-field.err .f-err{display:block}
+.contact .btn{margin-top:26px;border:1px solid var(--paper)}
+.sel-wrap{position:relative}
+.sel-wrap svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;pointer-events:none}
+select{width:100%;appearance:none;-webkit-appearance:none;background:transparent;border:1px solid var(--ink);padding:12px 38px 12px 12px;font:500 13px var(--mono);color:var(--ink);cursor:pointer}
+.dk .sel-wrap svg{color:var(--paper)}
+.dk select{border-color:rgba(242,237,226,.35);color:var(--paper)}
+.c-aside{border:1px solid rgba(242,237,226,.35);padding:clamp(20px,3vw,30px)}
+.c-aside .row{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(242,237,226,.18);font:500 10.5px var(--mono);letter-spacing:.08em;line-height:1.7}
+.c-aside .row:last-child{border-bottom:0}
+.c-aside .row span:first-child{color:rgba(242,237,226,.55);text-transform:uppercase;flex:none}
+.c-aside .row span:last-child{text-align:right;word-break:break-word}
+.c-aside .cta-box{margin-top:22px;border:1px dashed var(--accent-hi);padding:16px 18px;font:500 10.5px var(--mono);letter-spacing:.05em;line-height:1.8;color:rgba(242,237,226,.85)}
+.c-aside .cta-box b{color:var(--accent-hi);font-weight:600}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--paper);border-top:1px solid rgba(242,237,226,.25);padding:clamp(48px,7vw,80px) 0 30px}
+.f-top{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;align-items:flex-end}
+.f-wm{font-weight:900;font-stretch:125%;font-size:clamp(36px,6.5vw,80px);line-height:.9;letter-spacing:-.02em}
+.f-wm i{font-style:normal;color:var(--accent)}
+.f-col{display:flex;flex-direction:column;gap:8px}
+.f-col .lab{color:rgba(242,237,226,.5)}
+.f-col a{font:500 12px var(--mono);letter-spacing:.08em;transition:color .2s}
+.f-col a:hover{color:var(--accent-hi)}
+.f-bot{margin-top:clamp(32px,5vw,56px);padding-top:20px;border-top:1px solid rgba(242,237,226,.18);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:500 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(242,237,226,.55)}
+.f-bot b{color:var(--accent-hi);font-weight:500}
+
+/* ============ TOAST ============ */
+#toasts{position:fixed;right:18px;bottom:18px;z-index:99;display:flex;flex-direction:column;gap:10px;max-width:min(360px,calc(100vw - 36px))}
+.toast{display:flex;align-items:flex-start;gap:11px;background:var(--ink);color:var(--paper);border:1px solid var(--accent);padding:13px 16px;font:500 11.5px var(--mono);letter-spacing:.04em;line-height:1.55;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);animation:tin .35s cubic-bezier(.2,1,.3,1);box-shadow:0 12px 32px rgba(26,23,18,.3)}
+.toast svg{width:15px;height:15px;flex:none;color:var(--accent-hi);margin-top:1px}
+.toast.out{animation:tout .3s forwards}
+@keyframes tin{from{opacity:0;transform:translateY(14px)}}
+@keyframes tout{to{opacity:0;transform:translateX(20px)}}
+
+/* ============ RESPONSIF ============ */
+@media (max-width:1000px){
+  .proc-grid{grid-template-columns:1fr}
+  .proc-side{position:static}
+  .contact-grid{grid-template-columns:1fr}
+  .lrow{grid-template-columns:70px 1fr;grid-template-rows:auto auto}
+  .lrow .ds{grid-column:2}
+  .ba-grid{grid-template-columns:1fr}
+}
+@media (max-width:880px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .burger{display:grid}
+}
+@media (max-width:640px){
+  .step{grid-template-columns:64px 1fr}
+  .step-no{font-size:34px}
+  .f-grid{grid-template-columns:1fr}
+  .stat .num{min-width:100%}
+  .acc-body p,.acc-note{padding-left:0}
+  .shead{flex-direction:column;gap:4px}
+  .ba-item.full .ba,.ba-item:not(.full) .ba{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- strip berjalan -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track" id="mqTrack">
+    <div class="mq-seg">
+      <span>Metode: 100% manual</span><i class="dm"></i>
+      <span>Tanpa jet air</span><i class="dm"></i>
+      <span>Tanpa vakum</span><i class="dm"></i>
+      <span>Tanpa steam</span><i class="dm"></i>
+      <span>Clean to bare metal</span><i class="dm"></i>
+      <span>MERUJUK NFPA 96</span><i class="dm"></i>
+      <span>Survei gratis</span><i class="dm"></i>
+    </div>
+  </div>
+</div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Ducting Exhaust — Cleaning Ducting">
+      <span class="wm">DUCTING<i>/</i>EXHAUST</span>
+      <span class="tg">JASA CLEANING DUCTING — METODE MANUAL</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="#metode">Metode</a>
+      <a href="#proses">Proses</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#kontak" class="btn nav-cta">Minta Survei <i data-lucide="arrow-right"></i></a>
+    <button class="burger" id="burger" aria-label="Buka menu"><i data-lucide="menu"></i></button>
+  </div>
+</header>
+
+<!-- menu overlay mobile -->
+<div id="mnav" aria-hidden="true">
+  <div class="top">
+    <span class="lab">DUCTING/EXHAUST — INDEKS</span>
+    <button class="xbtn" id="mnavClose" aria-label="Tutup menu"><i data-lucide="x"></i></button>
+  </div>
+  <nav>
+    <a href="#metode"><small>01</small> Metode</a>
+    <a href="#proses"><small>02</small> Proses</a>
+    <a href="#galeri"><small>03</small> Galeri</a>
+    <a href="#faq"><small>04</small> FAQ</a>
+    <a href="#kontak"><small>05</small> Kontak</a>
+  </nav>
+  <div class="foot">Survei gratis — panel kami buka, kami foto, kami nilai.</div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow rv"><b>SPEC DE-23</b> JASA PEMBERSIHAN DUCTING — METODE MANUAL</div>
+      <h1 class="rv" style="--d:.05s">Lemak mengeras tidak bisa disedot. <span class="hl">Harus dikerok.</span></h1>
+      <p class="hero-sub rv" style="--d:.1s">Kami membuka setiap access panel ducting dapur Anda, masuk dengan <b>scraper, sikat kawat, dan kanebo</b> — mengerok lemak sampai telapak tangan merasakan logamnya. Bukan kamera. Bukan mesin. Tangan.</p>
+      <div class="hero-cta rv" style="--d:.15s">
+        <a href="#kontak" class="btn">Minta Survei Gratis <i data-lucide="arrow-right"></i></a>
+        <a href="#galeri" class="btn ghost">Lihat Bukti Foto <i data-lucide="arrow-down"></i></a>
+      </div>
+      <div class="hero-spec rv" style="--d:.2s">
+        <div class="specrow"><span>METODE</span><span>100% MANUAL — SCRAPE · BRUSH · WIPE</span></div>
+        <div class="specrow"><span>AKSES</span><span>SEMUA PANEL DIBUKA &amp; DIFOTO</span></div>
+        <div class="specrow"><span>VERIFIKASI</span><span>SENTUH + FOTO PER SEGMEN</span></div>
+        <div class="specrow"><span>AREA</span><span>JABODETABEK — LUAR KOTA ATAS PERJANJIAN</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENGAPA MANUAL ============ -->
+  <section class="dk why" id="metode">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span class="acc-c">SEC. 01</span> / METODE</span><span class="lab">KENAPA BUKAN MESIN</span></div>
+      <h2 class="st rv" style="--d:.05s">Tiga mesin yang kami tolak.</h2>
+      <p class="why-intro rv" style="--d:.1s">Kami bukan anti-mesin. Kami anti <em>setengah bersih</em> — hasil yang terlihat rapi dari luar, tapi menyimpan bahan bakar di dalam. Buka tiap argumen di bawah.</p>
+
+      <div class="acc rv" style="--d:.15s">
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">M.01</span><span class="acc-t">Jet air hanya memindahkan masalah</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div>
+            <p>Tekanan air melempar lemak cair ke sambungan flange, celah damper, dan plenum di balik dinding — lalu memadat kembali di titik yang tidak bisa dilihat siapa pun. Bersih di layar monitor, sumber api baru di tempat tersembunyi.</p>
+            <span class="acc-note">FIELD NOTE — Kami pernah mengangkat ±2 kg lemak tersangkut dari plenum klien yang "rutin dibersihkan jet" selama tiga tahun.</span>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">M.02</span><span class="acc-t">Uap melelehkan lemak — lalu lemak itu lari</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div>
+            <p>Lemak yang dilunakkan steam menetes mengikuti gravitasi: ke housing fan, ke motor, ke titik terendah ducting. Di sana ia mendingin dan mengeras lebih padat dari sebelumnya — tepat di komponen yang paling mahal untuk dibongkar.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">M.03</span><span class="acc-t">Vakum hanya menghisap yang sudah lepas</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div>
+            <p>Kerak lemak 3–6 mm menempel pada galvalum seperti cat. Tidak ada hisapan yang memisahkannya. Pemisahan harus mekanis: bilah scraper diseret sejajar permukaan, sikat kawat untuk sisa film, kanebo untuk finishing. Itu pekerjaan tangan — selalu.</p>
+          </div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">M.04</span><span class="acc-t">Standar kami: logam yang bisa disentuh</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div>
+            <p>Acuan kerja kami adalah prinsip NFPA 96: <b>clean to bare metal</b>, residu lemak maksimal ±0,5 mm. Verifikasi bukan lewat video, melainkan telapak tangan dan foto setiap segmen yang terbuka. Kalau panel tidak dibuka, tidak ada yang berhak mengklaim bersih.</p>
+            <span class="acc-note">VERIFIKASI — Sentuh. Foto. Timbang lemaknya. Setiap segmen, setiap proyek.</span>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROSES ============ -->
+  <section class="proc" id="proses">
+    <div class="wrap">
+      <div class="proc-grid">
+        <div class="proc-side">
+          <div class="shead rv" style="border-top:0;padding-top:0;margin-bottom:0"><span class="lab"><span class="acc-c">SEC. 02</span> / PROSES KERJA</span></div>
+          <h2 class="st rv" style="--d:.05s">Enam langkah. Semua terbuka. Semua dilaporkan.</h2>
+          <p class="rv" style="--d:.1s">Tidak ada pekerjaan "di dalam sana" yang tidak Anda lihat. Setiap segmen ducting dibuka, dikerok, difoto sebelum-sesudah, dan masuk laporan yang Anda simpan untuk asuransi maupun pemadam kebakaran.</p>
+          <div class="note-box rv" style="--d:.15s"><b>DURASI TIPIKAL —</b> restoran skala menengah selesai dalam 1–2 shift malam. Dapur tetap bisa buka pagi berikutnya. Jadwal menyesuaikan jam operasional Anda, bukan sebaliknya.</div>
+        </div>
+
+        <div class="steps">
+          <div class="step rv"><div class="step-no">01</div><div>
+            <h3><i data-lucide="ruler"></i>Survei &amp; peta akses</h3>
+            <p>Kami ukur panjang jalur, hitung belokan, dan tandai titik access panel. Anda menerima peta kerja dan penawaran tertulis sebelum tangan kami menyentuh apa pun.</p>
+            <div class="meta"><span>EST. <b>60–90 MENIT</b></span><span>BIAYA <b>GRATIS</b></span></div>
+          </div></div>
+          <div class="step rv" style="--d:.05s"><div class="step-no">02</div><div>
+            <h3><i data-lucide="shield-check"></i>Proteksi area dapur</h3>
+            <p>Alat masuk ditutup film, lantai dilapisi terpal, area kerja dibatasi barrier. Dapur Anda tetap dapur — bukan lokasi proyek berdebu.</p>
+            <div class="meta"><span>MELIPUTI <b>HOOD · STOVE · LANTAI</b></span></div>
+          </div></div>
+          <div class="step rv" style="--d:.1s"><div class="step-no">03</div><div>
+            <h3><i data-lucide="wrench"></i>Pembukaan access panel</h3>
+            <p>Setiap segmen 3–5 meter dibuka. Ducting Anda belum punya panel? Kami fabrikasi dan pasang panel baru ber-gasket — jadi inspeksi berikutnya jauh lebih murah.</p>
+            <div class="meta"><span>PANEL BARU <b>± 30 MENIT/TITIK</b></span><span>SEAL <b>GASKET + SCREW</b></span></div>
+          </div></div>
+          <div class="step rv" style="--d:.15s"><div class="step-no">04</div><div>
+            <h3><i data-lucide="brush"></i>Pengerokan manual</h3>
+            <p>Inti pekerjaan: scraper bilah, sikat kawat, kanebo. Kerak dipisahkan dari logam, dikumpulkan, lalu ditimbang — bukan dibilas ke drain Anda.</p>
+            <div class="meta"><span>PERKAKAS <b>SCRAPER · WIRE BRUSH</b></span><span>OUTPUT <b>LEMAK DITIMBANG</b></span></div>
+          </div></div>
+          <div class="step rv" style="--d:.2s"><div class="step-no">05</div><div>
+            <h3><i data-lucide="fan"></i>Detailing fan &amp; damper</h3>
+            <p>Blade fan, housing, damper, dan kanopi dibersihkan satu per satu. Motor diproteksi, keseimbangan blade diperiksa sebelum dipasang ulang.</p>
+            <div class="meta"><span>CEK <b>BALANCING · GETARAN</b></span></div>
+          </div></div>
+          <div class="step rv" style="--d:.25s"><div class="step-no">06</div><div>
+            <h3><i data-lucide="camera"></i>Uji &amp; laporan</h3>
+            <p>Foto sebelum–sesudah per segmen, residu diukur, laporan tertulis + sertifikat pembersihan + rekomendasi jadwal berikutnya. Arsip Anda, bukan hanya milik kami.</p>
+            <div class="meta"><span>DELIVERABLE <b>FOTO · SERTIFIKAT · JADWAL</b></span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCOPE ============ -->
+  <section class="scope">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span class="acc-c">SEC. 03</span> / SCOPE OF WORK</span><span class="lab">APA YANG KAMI KERJAKAN</span></div>
+      <div class="ledger rv" style="--d:.05s">
+        <div class="lrow"><span class="code">HD-01</span><span class="nm">Kanopi &amp; hood exhaust</span><span class="ds">BAFFLE FILTER · TROUGH · FILTER RAIL · LAMPU</span></div>
+        <div class="lrow"><span class="code">DX-02</span><span class="nm">Ducting horizontal</span><span class="ds">AKSES PANEL TIAP 3–5 M · PENGKEROKAN DUA SISI</span></div>
+        <div class="lrow"><span class="code">DX-03</span><span class="nm">Ducting vertikal / riser</span><span class="ds">AKSES PER LANTAI · TITIK TERENDAH DIPRIORITASKAN</span></div>
+        <div class="lrow"><span class="code">FN-04</span><span class="nm">Exhaust fan &amp; housing</span><span class="ds">BLADE · BELT · MOTOR DIPROTESI · CEK GETARAN</span></div>
+        <div class="lrow"><span class="code">DP-05</span><span class="nm">Fire damper &amp; plenum</span><span class="ds">DIBERSIHKAN · GERAK DIUJI · LEMAK TERSEMBUNYI DIANGKAT</span></div>
+        <div class="lrow"><span class="code">MK-06</span><span class="nm">Make-up air duct</span><span class="ds">OPSIONAL · METODE SAMA, TANPA MENGGANGGU ALIRAN</span></div>
+      </div>
+      <div class="scope-cta rv" style="--d:.1s">
+        <p>Punya konfigurasi ducting di luar daftar — riser panjang, roof-mounted fan, kompactor? Ceritakan saja; penilaian awal tetap gratis.</p>
+        <a href="#kontak" class="btn ghost">Konsultasi <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATISTIK ============ -->
+  <section class="strip">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span style="color:var(--ink)">SEC. 03-A</span> / BUKTI KERJA</span><span class="lab">DIHITUNG DARI LOG PROYEK INTERNAL</span></div>
+      <div class="stat rv"><span class="num" data-val="512">0</span><span class="cap">Dapur &amp; kitchen exhaust ditangani sejak 2016</span></div>
+      <div class="stat rv" style="--d:.05s"><span class="num" data-val="31400">0</span><span class="cap">Meter ducting dikerok dengan tangan — tanpa jet, tanpa steam</span></div>
+      <div class="stat rv" style="--d:.1s"><span class="num" data-val="0">0</span><span class="cap">Laporan titik api dari klien dalam kontrak pemeliharaan berkala</span></div>
+      <div class="stat rv" style="--d:.15s"><span class="num" data-val="100" data-suffix="%">0</span><span class="cap">Segmen difoto sebelum–sesudah, tanpa kecuali</span></div>
+      <p class="src rv">PERIODE 2016–2023 · ANGKA DIBULATKAN KE BAWAH, BUKAN KE ATAS</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GALERI BEFORE / AFTER
+       LAMP. A (FOTO 01–10): 5 TERATAS ARSIP LAMA = SEBELUM,
+       5 TERBAWAH = SESUDAH. PASANGAN 01?06 … 05?10.
+       LAMP. B (FOTO 11–14, ARSIP BARU): 2 TERATAS = SEBELUM,
+       2 TERBAWAH = SESUDAH. PASANGAN 11?13 · 12?14.
+  ========================================================= -->
+  <section class="gal" id="galeri">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span class="acc-c">SEC. 04</span> / LAMPIRAN FOTO</span><span class="lab">FOTO ASLI LAPANGAN · TANPA RETUSH</span></div>
+      <h2 class="st rv" style="--d:.05s">Geser garisnya. Itu beda dikerok dan disemir.</h2>
+      <p class="lede rv" style="--d:.1s"><b>Tujuh pasangan</b> di bawah disusun dari arsip lapangan: foto <b>01–05 &amp; 11–12 adalah kondisi sebelum</b> disentuh, foto <b>06–10 &amp; 13–14 adalah hasil sesudah dikerok</b> — dipasangkan berurutan. Tarik garis oranye ke kiri-kanan (atau gunakan tombol panah) untuk membandingkan.</p>
+
+      <div class="ba-grid">
+
+        <!-- ================= LAMP. A — DUCTING ================= -->
+
+        <!-- PASANGAN 1 — SEBELUM: FOTO 01 · SESUDAH: FOTO 06 -->
+        <article class="ba-item full rv">
+          <div class="ba-head"><span class="lab">LAMP. A-01 — PASANGAN 1 DARI 7</span><span class="lab">FOTO 01 ? 06</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 1">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/4c7cf28b-9f5a-48d2-b3c5-e8c26718e6ca.jpeg?auth_key=1887932643-db5c751f725449cfac624892570e360e-0-a3bd122090aea127ca6ae0a16f2c8435" alt="Sesudah: interior ducting setelah dikerok (foto 06)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/66001557-4ae6-48db-91d2-7152d2685117.jpeg?auth_key=1887932643-d721a54176cb4c82b159a6ab48b051c3-0-dc68c869a2426956de2b38e119b061e1" alt="Sebelum: interior ducting dengan endapan lemak dan noda (foto 01)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 01</b></span><span>SESUDAH <b>FOTO 06</b></span><span>AKSES <b>VIA ACCESS PANEL</b></span></div>
+        </article>
+
+        <!-- PASANGAN 2 — SEBELUM: FOTO 02 · SESUDAH: FOTO 07 -->
+        <article class="ba-item rv" style="--d:.05s">
+          <div class="ba-head"><span class="lab">LAMP. A-02 — PASANGAN 2 DARI 7</span><span class="lab">FOTO 02 ? 07</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 2">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/9f555c06-4a16-45eb-b68f-044d22fd71ce.jpeg?auth_key=1887932643-eb3c99e87b414fc0ab59fb7034fc355f-0-ac57cbde76645984f28acd9b93fd8ed2" alt="Sesudah: struktur logam setelah dibersihkan (foto 07)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/c8b1c904-c4e7-4e7e-8cf3-df8f2f18f6a5.jpeg?auth_key=1887932643-f31ced61e21c4a76b230af95493360a4-0-02254a5c16a90ee9057886c91a5efc9d" alt="Sebelum: dinding ducting berlapis endapan kecoklatan (foto 02)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 02</b></span><span>SESUDAH <b>FOTO 07</b></span><span>AKSES <b>VIA ACCESS PANEL</b></span></div>
+        </article>
+
+        <!-- PASANGAN 3 — SEBELUM: FOTO 03 · SESUDAH: FOTO 08 -->
+        <article class="ba-item rv" style="--d:.1s">
+          <div class="ba-head"><span class="lab">LAMP. A-03 — PASANGAN 3 DARI 7</span><span class="lab">FOTO 03 ? 08</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 3">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/9e98d59f-6a49-4b4c-a88c-04b5f542b29e.jpeg?auth_key=1887932643-b23cabbb4c464a0ac44ddbab2ed49-0-28d9138f3e8852cb4a78304b90817fbd" alt="Sesudah: saluran ducting setelah pengerokan (foto 08)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/4927e8e0-2d1d-4f4b-ade1-1e9632330c8c.jpeg?auth_key=1887932643-3b396a7a7a8247d9b731f0cd4ed16529-0-a1620f27a69722b2f3ddbf6d4945c738" alt="Sebelum: ducting berdebu dan berminyak (foto 03)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 03</b></span><span>SESUDAH <b>FOTO 08</b></span><span>AKSES <b>VIA ACCESS PANEL</b></span></div>
+        </article>
+
+        <!-- PASANGAN 4 — SEBELUM: FOTO 04 · SESUDAH: FOTO 09 -->
+        <article class="ba-item rv" style="--d:.05s">
+          <div class="ba-head"><span class="lab">LAMP. A-04 — PASANGAN 4 DARI 7</span><span class="lab">FOTO 04 ? 09</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 4">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/827582ca-e081-4ba6-ad0b-8cdbb12c3f2f.jpeg?auth_key=1887932643-473ed38cf6cf4a05a799e291fe831459-0-c0d30e8f166c17a081931a31e630cb0f" alt="Sesudah: interior logam setelah dibersihkan (foto 09)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/bf8a319b-de33-457c-a0ca-26bf569dfbac.jpeg?auth_key=1887932643-d1e89e762dd1413299630e983283153a-0-d9483022c01d7e09be2fc31db62139ca" alt="Sebelum: panel ducting dengan noda dan endapan (foto 04)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 04</b></span><span>SESUDAH <b>FOTO 09</b></span><span>AKSES <b>VIA ACCESS PANEL</b></span></div>
+        </article>
+
+        <!-- PASANGAN 5 — SEBELUM: FOTO 05 · SESUDAH: FOTO 10 -->
+        <article class="ba-item rv" style="--d:.1s">
+          <div class="ba-head"><span class="lab">LAMP. A-05 — PASANGAN 5 DARI 7</span><span class="lab">FOTO 05 ? 10</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 5">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/d38cef25-56fe-46d0-b543-70155a12f039.jpeg?auth_key=1887932643-3a459cba97594cfa9ce311fe9c3aec62-0-06eb9da652d0b79e3033d95f920a57b3" alt="Sesudah: struktur utama setelah detailing (foto 10)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/50828e37-26aa-4e46-855a-d480be7e373b.jpeg?auth_key=1887932643-b3ff2fe1ad0e4e0ca05b5d67b5c18552-0-a5e47f6fdf29b6378bf0af37b84134b0" alt="Sebelum: dinding ducting berkarat dan bernoda (foto 05)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 05</b></span><span>SESUDAH <b>FOTO 10</b></span><span>AKSES <b>VIA ACCESS PANEL</b></span></div>
+        </article>
+
+        <!-- ================= LAMP. B — EXHAUST FAN (ARSIP BARU) ================= -->
+
+        <div class="gal-sub rv">
+          <span class="lab"><span class="acc-c">LAMP. B</span> / EXHAUST FAN &amp; DETAILING KOMPONEN</span>
+          <span class="lab">ARSIP BARU · FOTO 11–14 · 2 PASANGAN</span>
+        </div>
+
+        <!-- PASANGAN 6 — SEBELUM: FOTO 11 (2 TERATAS) · SESUDAH: FOTO 13 (2 TERBAWAH) -->
+        <article class="ba-item rv" style="--d:.05s">
+          <div class="ba-head"><span class="lab">LAMP. B-01 — PASANGAN 6 DARI 7</span><span class="lab">FOTO 11 ? 13</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 6">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/63530799-85dd-4110-8909-7f154f1b9703.jpeg?auth_key=1887933653-bb0bcfa80c50494c9662074a7d9b1993-0-87ad410ca27d10f115a7d116248ff599" alt="Sesudah: blade dan shaft exhaust fan setelah dibersihkan (foto 13)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/03ccaf9c-fbd6-4322-8dfa-1e758d72aa20.jpeg?auth_key=1887933653-cccd7c8845624571821b30632cb1f020-0-0064ce9e6cd465f825e056592467e997" alt="Sebelum: blade exhaust fan berlumut kerak dan berkarat (foto 11)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 11</b></span><span>SESUDAH <b>FOTO 13</b></span><span>KOMPONEN <b>BLADE · SHAFT · BOLT</b></span></div>
+        </article>
+
+        <!-- PASANGAN 7 — SEBELUM: FOTO 12 (2 TERATAS) · SESUDAH: FOTO 14 (2 TERBAWAH) -->
+        <article class="ba-item rv" style="--d:.1s">
+          <div class="ba-head"><span class="lab">LAMP. B-02 — PASANGAN 7 DARI 7</span><span class="lab">FOTO 12 ? 14</span></div>
+          <div class="ba" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Pembanding sebelum-sesudah, pasangan 7">
+            <img class="ba-img" src="https://z-cdn-media.chatglm.cn/files/51b0248d-c904-4240-b256-c318753904b3.jpeg?auth_key=1887933653-783943458cc84e1690591c54bfc16dca-0-2cafbc59980db8693aaa87d6e830d8a0" alt="Sesudah: hub fan dan blade setelah detailing (foto 14)" draggable="false" loading="lazy">
+            <img class="ba-img ba-top" src="https://z-cdn-media.chatglm.cn/files/c3b21d33-b48a-41dc-a825-97a61baa37ce.jpeg?auth_key=1887933653-1a840236bb304a2e842e5061023c3ab1-0-72e5b510acada00783541b02cc889f5d" alt="Sebelum: hub fan dan bearing tertutup kerak lemak (foto 12)" draggable="false" loading="lazy">
+            <span class="ba-tag l">SEBELUM</span><span class="ba-tag r">SESUDAH</span>
+            <div class="ba-handle"><span class="ba-grip"><i data-lucide="chevrons-left-right"></i></span></div>
+          </div>
+          <div class="ba-meta"><span>SEBELUM <b>FOTO 12</b></span><span>SESUDAH <b>FOTO 14</b></span><span>KOMPONEN <b>HUB · BEARING · BLADE</b></span></div>
+        </article>
+      </div>
+
+      <div class="gal-note rv"><b>CATATAN PENOMORAN —</b> LAMP. A: SEBELUM = FOTO 01–05 · SESUDAH = FOTO 06–10 (01?06 … 05?10) — LAMP. B: SEBELUM = FOTO 11–12 (2 TERATAS ARSIP BARU) · SESUDAH = FOTO 13–14 (2 TERBAWAH) (11?13 · 12?14)</div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span class="acc-c">SEC. 05</span> / PERTANYAAN UMUM</span><span class="lab">JAWABAN SINGKAT, TANPA BASA-BASI</span></div>
+      <div class="acc paper rv" style="--d:.05s">
+        <div class="acc-item paper">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">Q.1</span><span class="acc-t">Berapa lama dapur kami harus berhenti?</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div><p>Umumnya 1–2 shift malam untuk restoran skala menengah. Kami bekerja pasca-operasional sehingga dapur tetap bisa buka pagi berikutnya. Untuk ducting panjang, kami bagi zona agar sebagian dapur tetap aktif.</p></div></div>
+        </div>
+        <div class="acc-item paper">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">Q.2</span><span class="acc-t">Apakah hasilnya bergaransi?</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div><p>Ya. Jika pada pemeriksaan acak bersama Anda ditemukan residu di atas ±0,5 mm di segmen mana pun, kami kerok ulang segmen itu tanpa biaya. Itu tertulis di kontrak, bukan janji lisan.</p></div></div>
+        </div>
+        <div class="acc-item paper">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">Q.3</span><span class="acc-t">Ducting kami belum punya access panel — bisa?</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div><p>Justru itu bagian dari keahlian kami. Kami memfabrikasi dan memasang panel ber-gasket pada titik strategis (tiap 3–5 meter dan di setiap belokan). Sekali pasang, pembersihan dan inspeksi berikutnya jauh lebih cepat dan murah.</p></div></div>
+        </div>
+        <div class="acc-item paper">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">Q.4</span><span class="acc-t">Seberapa sering ducting dapur harus dibersihkan?</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div><p>Merujuk pola NFPA 96: volume masakan sedang setiap 6 bulan, volume tinggi / penggorengan intensif setiap 3 bulan. Kami beri jadwal berdasarkan temuan nyata di ducting Anda, bukan kalender penjualan.</p></div></div>
+        </div>
+        <div class="acc-item paper">
+          <button class="acc-btn" aria-expanded="false"><span class="acc-no">Q.5</span><span class="acc-t">Melayani area di luar Jabodetabek?</span><span class="acc-x"><i data-lucide="plus"></i></span></button>
+          <div class="acc-body"><div><p>Bisa, dengan minimum order dan biaya mobilitas yang kami sebutkan di depan. Untuk luar pulau, kami jadwalkan proyek berdekatan agar biaya Anda efisien.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KONTAK ============ -->
+  <section class="dk contact" id="kontak">
+    <div class="wrap">
+      <div class="shead rv"><span class="lab"><span class="acc-c">SEC. 06</span> / KONTAK</span><span class="lab">RESPON = 2 JAM KERJA</span></div>
+      <div class="contact-grid">
+        <div>
+          <h2 class="st rv" style="--d:.05s">Biar kami lihat isinya.</h2>
+          <p class="lede rv" style="--d:.1s">Isi form singkat ini. Tim survei kami datang, membuka satu panel, memotret kondisi nyata, lalu memberi penawaran tertulis — gratis dan tanpa komitmen.</p>
+          <form id="cForm" class="f-grid rv" style="--d:.15s" novalidate>
+            <div class="f-field">
+              <label for="fNama">Nama Anda</label>
+              <input type="text" id="fNama" placeholder="cth. Rangga Prakoso" autocomplete="name">
+              <span class="f-err">Mohon isi nama Anda.</span>
+            </div>
+            <div class="f-field">
+              <label for="fWa">Nomor WhatsApp</label>
+              <input type="tel" id="fWa" placeholder="cth. 0831 4126 7623" autocomplete="tel">
+              <span class="f-err">Nomor tidak valid — minimal 9 digit.</span>
+            </div>
+            <div class="f-field full">
+              <label for="fUsaha">Jenis usaha</label>
+              <div class="sel-wrap">
+                <select id="fUsaha">
+                  <option value="">— Pilih —</option>
+                  <option>Restoran</option>
+                  <option>Hotel</option>
+                  <option>Kafe / kedai</option>
+                  <option>Katering &amp; cloud kitchen</option>
+                  <option>Pabrik / katering industri</option>
+                  <option>Lainnya</option>
+                </select>
+                <i data-lucide="chevron-down"></i>
+              </div>
+              <span class="f-err">Mohon pilih jenis usaha.</span>
+            </div>
+            <div class="f-field full">
+              <label for="fMsg">Catatan (opsional)</label>
+              <textarea id="fMsg" placeholder="Panjang ducting, lama tidak dibersihkan, keluhan (bau, hisapan lemah, dsb.)"></textarea>
+            </div>
+            <div class="full">
+              <button type="submit" class="btn" id="fSubmit">Kirim Permintaan Survei <i data-lucide="arrow-right"></i></button>
+            </div>
+          </form>
+        </div>
+        <aside class="c-aside rv" style="--d:.2s">
+          <div class="row"><span>Survei</span><span>GRATIS — 1 PANEL DIBUKA &amp; DIFOTO</span></div>
+          <div class="row"><span>Jam operasional</span><span>SENIN–SABTU · 08.00–20.00</span></div>
+          <div class="row"><span>Pekerjaan malam</span><span>SESUAI JADWAL DAPUR ANDA</span></div>
+          <div class="row"><span>Area</span><span>JABODETABEK — LUAR KOTA ATAS PERJANJIAN</span></div>
+          <div class="row"><span>Telepon / WA</span><span>0831-4126-7623</span></div>
+          <div class="row"><span>Email</span><span>ductingexhaust18@gmail.com</span></div>
+          <div class="cta-box"><b>KENAPA GRATIS?</b> Karena lemak yang tidak terlihat tidak bisa dinilai. Kami perlu membuka satu panel untuk memberi penawaran yang jujur — dan Anda perlu melihat kondisi nyata ducting Anda.</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <div class="f-wm">DUCTING<i>/</i>EXHAUST</div>
+        <div class="lab" style="margin-top:14px;color:rgba(242,237,226,.55)">JASA CLEANING DUCTING — EST. 2016 · METODE 100% MANUAL</div>
+      </div>
+      <div class="f-col">
+        <span class="lab">INDEKS</span>
+        <a href="#metode">01 — Metode</a>
+        <a href="#proses">02 — Proses</a>
+        <a href="#galeri">03 — Galeri</a>
+        <a href="#faq">04 — FAQ</a>
+        <a href="#kontak">05 — Kontak</a>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>© 2023 DUCTING/EXHAUST — TANPA JET · TANPA VAKUM · TANPA STEAM</span>
+      <span>SITUS INI DIBANGUN DENGAN TANGAN. <b>TEPAT SEPERTI METODE KAMI.</b></span>
+    </div>
+  </div>
+</footer>
+
+<div id="toasts" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   DUCTING/EXHAUST — interaksi situs (semua berjalan lokal)
+========================================================= */
+const $  = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+
+/* ---------- toast ---------- */
+function toast(msg, icon='check'){
+  const box = $('#toasts');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<i data-lucide="${icon}"></i><span>${msg}</span>`;
+  box.appendChild(t);
+  lucide.createIcons();
+  setTimeout(()=>{ t.classList.add('out'); setTimeout(()=>t.remove(), 320); }, 4200);
+}
+
+/* ---------- progress + header ---------- */
+const prog = $('#prog'), hdr = $('#hdr');
+addEventListener('scroll', ()=>{
+  const h = document.documentElement;
+  const p = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  prog.style.width = (p*100) + '%';
+  hdr.classList.toggle('scrolled', h.scrollTop > 10);
+}, {passive:true});
+
+/* ---------- menu mobile ---------- */
+const mnav = $('#mnav');
+ $('#burger').addEventListener('click', ()=>{ mnav.classList.add('open'); mnav.setAttribute('aria-hidden','false'); });
+ $('#mnavClose').addEventListener('click', closeMenu);
+ $$('#mnav nav a').forEach(a=>a.addEventListener('click', closeMenu));
+function closeMenu(){ mnav.classList.remove('open'); mnav.setAttribute('aria-hidden','true'); }
+
+/* ---------- marquee ---------- */
+(()=>{ const tr = $('#mqTrack'); tr.appendChild(tr.firstElementChild.cloneNode(true)); })();
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12});
+ $$('.rv').forEach(el=>io.observe(el));
+
+/* ---------- accordion generik ---------- */
+ $$('.acc').forEach(group=>{
+  $$('.acc-btn', group).forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      $$('.acc-item', group).forEach(i=>{
+        i.classList.remove('open');
+        $('.acc-btn', i).setAttribute('aria-expanded','false');
+      });
+      if(!wasOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+});
+
+/* ---------- angka statistik ---------- */
+const fmtID = n => Math.round(n).toLocaleString('id-ID');
+const statIO = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    statIO.unobserve(e.target);
+    const el = e.target, to = +el.dataset.val, suf = el.dataset.suffix || '';
+    const t0 = performance.now(), D = 1500;
+    (function u(t){
+      const k = Math.min(1,(t-t0)/D), ease = 1-Math.pow(1-k,3);
+      el.textContent = fmtID(to*ease) + suf;
+      if(k<1) requestAnimationFrame(u);
+    })(t0);
+  });
+},{threshold:.4});
+ $$('.stat .num').forEach(el=>statIO.observe(el));
+
+/* =========================================================
+   LAMPIRAN FOTO — pembanding SEBELUM/SESUDAH (slider geser)
+   Struktur tiap .ba:
+     <img class="ba-img">       pertama = SESUDAH (lapisan bawah)
+     <img class="ba-img ba-top">        = SEBELUM (lapisan atas, terpotong)
+========================================================= */
+ $$('.ba').forEach(ba=>{
+  const top = $('.ba-top', ba), handle = $('.ba-handle', ba);
+  let x = 50, dragging = false, dead = false;
+
+  const apply = ()=>{
+    top.style.clipPath = `inset(0 ${100 - x}% 0 0)`;
+    handle.style.left = x + '%';
+    ba.setAttribute('aria-valuenow', Math.round(x));
+  };
+  const fromEvent = e=>{
+    const r = ba.getBoundingClientRect();
+    x = Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100));
+    apply();
+  };
+
+  ba.addEventListener('pointerdown', e=>{
+    dead = true;                 // hentikan animasi intro bila user mulai geser
+    dragging = true;
+    ba.setPointerCapture(e.pointerId);
+    fromEvent(e);
+  });
+  ba.addEventListener('pointermove', e=>{ if(dragging) fromEvent(e); });
+  ['pointerup','pointercancel'].forEach(ev=>ba.addEventListener(ev, ()=>dragging=false));
+
+  ba.addEventListener('keydown', e=>{
+    const step = e.shiftKey ? 10 : 3;
+    if(e.key==='ArrowLeft'){  x = Math.max(0,  x-step); apply(); e.preventDefault(); }
+    if(e.key==='ArrowRight'){ x = Math.min(100, x+step); apply(); e.preventDefault(); }
+  });
+
+  apply();
+
+  /* animasi "sentuhan" sekali saat pertama terlihat — menandakan bisa digeser */
+  const nz = new IntersectionObserver(es=>{
+    es.forEach(en=>{
+      if(!en.isIntersecting) return;
+      nz.disconnect();
+      const tween = (from, to, dur, cb)=>{
+        if(dead){ x = 50; apply(); return; }
+        const s = performance.now();
+        (function f(t){
+          if(dead){ return; }
+          const k = Math.min(1, (t-s)/dur), e2 = .5 - Math.cos(Math.PI*k)/2;
+          x = from + (to-from)*e2; apply();
+          if(k<1) requestAnimationFrame(f); else cb && cb();
+        })(s);
+      };
+      tween(50, 64, 420, ()=>tween(64, 36, 560, ()=>tween(36, 50, 420)));
+    });
+  }, {threshold:.55});
+  nz.observe(ba);
+});
+
+/* fallback bila alamat foto mati — tampilkan catatan, bukan ikon rusak */
+ $$('.ba-img').forEach(im=>{
+  im.addEventListener('error', ()=>{
+    const box = im.closest('.ba');
+    if(box) box.classList.add('ba-err');
+  });
+});
+
+/* =========================================================
+   FORM SURVEI (validasi inline, tanpa alert)
+========================================================= */
+(()=>{
+  const form = $('#cForm'); if(!form) return;
+  const fields = [
+    {el:$('#fNama'), ok:v=>v.trim().length>=2},
+    {el:$('#fWa'),   ok:v=>/^[+]?[0-9][0-9\s\-]{7,15}$/.test(v.trim())},
+    {el:$('#fUsaha'),ok:v=>v!==''}
+  ];
+  fields.forEach(f=>f.el.addEventListener('input', ()=>f.el.closest('.f-field').classList.remove('err')));
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    let valid = true;
+    fields.forEach(f=>{
+      const bad = !f.ok(f.el.value);
+      f.el.closest('.f-field').classList.toggle('err', bad);
+      if(bad) valid = false;
+    });
+    if(!valid){ toast('Mohon lengkapi kolom yang ditandai merah.', 'triangle-alert'); return; }
+    const nama = $('#fNama').value.trim().split(' ')[0];
+    form.reset();
+    toast(`Terima kasih, ${nama}. Permintaan survei tercatat — tim kami menghubungi Anda = 2 jam kerja.`, 'badge-check');
+  });
+})();
+
+/* ---------- render ikon ---------- */
+lucide.createIcons();
+</script>
+</body>
+</html>
